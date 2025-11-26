@@ -21,7 +21,6 @@
 *   **⚡️ 全球加速**: 基于 Cloudflare 边缘网络 (Edge Network)，无论你的读者身在何处，图片都能秒级加载。
 *   **🧠 零配置**: 告别 Bucket、Region、ACL。填入一个 Key，即刻开始。
 *   **🛡️ 隐私纯净**: 自动清洗云厂商追踪标识与元数据，只保留最纯净的图片链接，保护你的数字隐私。
-*   **🎨 智能压缩**: 客户端自动将图片转换为 **WebP** 格式（体积减少 50%），既节省带宽，又让你的博客加载飞快。
 *   **🔒 数据主权**: 插件代码完全开源，你可以清楚地看到数据在离开你的设备前是如何被处理的。
 
 👉 **还没有账号？** [立即获取 API Key (¥39.9/年)](https://slnt.dev)
@@ -51,7 +50,6 @@
 | :--- | :--- | :--- |
 | **API Endpoint** | 你的服务接口地址 | `https://silentflow-worker.edge-api-666.workers.dev` (请填写你购买后获得的地址) |
 | **API Key** | 你的专属密钥 | `sk_xxxxxxxxxxxx` ([点击获取](https://slnt.dev)) |
-| **Auto Compress** | 是否开启 WebP 压缩 | **推荐开启** (Yes)。开启后上传速度更快，图片体积更小。 |
 
 > **💡 Pro Tip:** 建议在 PicGo 设置中开启 **「上传前重命名」** 或 **「时间戳重命名」**，以避免文件名冲突。
 
@@ -63,15 +61,12 @@
 
 1.  安装 **[Image Auto Upload Plugin](https://github.com/Renovamen/obsidian-image-auto-upload-plugin)** (或者 PicGo Core)。
 2.  在 Obsidian 中粘贴截图。
-3.  **SilentFlow** 插件会自动接管上传、压缩、并返回 HTTPS 链接。
+3.  **SilentFlow** 插件会自动接管上传、并返回 HTTPS 链接。
 4.  🎉 你只管写作，剩下的交给我们。
 
 ---
 
 ## ❓ 常见问题 (FAQ)
-
-**Q: 开启 Auto Compress 会影响画质吗？**
-A: 插件默认使用 80% 质量的 WebP 压缩。对于技术博客、笔记截图来说，**肉眼几乎无法分辨差异**，但体积通常能减小 40%-60%，极大提升加载速度。
 
 **Q: 我的图片数据安全吗？**
 A: 安全。

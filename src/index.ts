@@ -1,10 +1,8 @@
 import { PicGo } from 'picgo'
-import sharp from 'sharp'
 
 interface SilentFlowConfig {
   url: string
   token: string
-  autoCompress?: boolean
 }
 
 export = (ctx: PicGo) => {
@@ -25,30 +23,12 @@ export = (ctx: PicGo) => {
 
     const url = userConfig.url.replace(/\/$/, '') // 去掉末尾的斜杠
     const token = userConfig.token
-    const autoCompress = userConfig.autoCompress !== false // 默认为 true
 
     // 2. 遍历图片列表进行上传
     const imgList = ctx.output
     for (const img of imgList) {
       if (img.fileName && img.buffer) {
         let image = img.buffer
-
-        // 客户端压缩
-        if (autoCompress && (img.extname === '.png' || img.extname === '.jpg' || img.extname === '.jpeg')) {
-          try {
-            ctx.log.info(`[SilentFlow] Compressing ${img.fileName}...`)
-            image = await sharp(image)
-              .webp({ quality: 80 })
-              .toBuffer()
-            img.buffer = image
-            img.fileName = img.fileName.replace(/\.[^/.]+$/, "") + ".webp"
-            img.extname = '.webp'
-            ctx.log.success(`[SilentFlow] Compressed to WebP`)
-          } catch (e: any) {
-            ctx.log.error(`[SilentFlow] Compression failed: ${e.message}`)
-            // 压缩失败降级为原图上传
-          }
-        }
 
         // 3. 构造请求参数
         const postConfig: any = {
@@ -110,13 +90,6 @@ export = (ctx: PicGo) => {
         type: 'password',
         default: userConfig?.token || '',
         message: 'API Key (例如 sk_test_...)',
-        required: true
-      },
-      {
-        name: 'autoCompress',
-        type: 'confirm',
-        default: userConfig?.autoCompress !== false,
-        message: '是否开启自动压缩 (转为 WebP 80%)',
         required: true
       },
       {
